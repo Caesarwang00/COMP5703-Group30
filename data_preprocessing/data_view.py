@@ -1,23 +1,10 @@
-# -*- coding: utf-8 -*-
-"""
-TCGA-GBM 多模态数据体检（只打印）
-适配你当前 data 目录下这些名字：
-- GBM_mc3_gene_level.txt
-- Gistic2_CopyNumber_Gistic2_all_thresholded_by_genes   （可能是无扩展名文件或目录）
-- HumanMethylation450                                    （可能是无扩展名文件或目录）
-- TCGA.GBM.sampleMap_GBM_clinicalMatrix                  （可能是无扩展名文件或目录）
-- phenotype - Curated survival data.txt
-
-如果稍后补上 RNA-seq（HiSeqV2），把 PATHS['Expr_RNAseq'] 填好即可自动纳入体检与交集计算。
-"""
-
 import os
 import re
 import glob
 import pandas as pd
 
 # ===== 基本路径 =====
-BASE_DIR = r"C:\Users\93790\Uni\COMP5703-Group30\data"
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "data"))
 
 # ===== 你当前的实际文件名（按截图填写）=====
 PATHS = {
