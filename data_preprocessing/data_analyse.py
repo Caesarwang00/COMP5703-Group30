@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-GBM 多模态数据体检（只print；修复原发瘤=01判断 & 清理非样本列）
-放到: data_preprocessing/data_analyse.py
+GBM 多模态数据体检（只print；支持 RNA-seq/HiSeqV2；输出单/双/三/四模态交集与亚型分布）
 运行:  python data_preprocessing/data_analyse.py
 """
 
@@ -9,6 +8,7 @@ import os
 import re
 import numpy as np
 import pandas as pd
+from itertools import combinations
 
 # ========= 路径（相对）=========
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -18,7 +18,8 @@ FILES = {
     "mutation":  os.path.join(BASE_DIR, "GBM_mc3_gene_level.txt"),
     "cnv_thres": os.path.join(BASE_DIR, "Gistic2_CopyNumber_Gistic2_all_thresholded.by_genes"),
     "methyl450": os.path.join(BASE_DIR, "HumanMethylation450"),
-    "mirna":     os.path.join(BASE_DIR, "miRNA_HiSeq_gene"),
+    # 注意：这里的 HiSeqV2 是 RNA-seq（不是 miRNA）
+    "rnaseq":    os.path.join(BASE_DIR, "HiSeqV2"),
     "clinical":  os.path.join(BASE_DIR, "TCGA.GBM.sampleMap_GBM_clinicalMatrix"),
 }
 
@@ -58,7 +59,7 @@ def guess_matrix_orientation(df: pd.DataFrame, name: str):
     # 1) 处理显式的特征列名
     first_lower = df0.columns[0].lower()
     special_first_cols = {
-        "gene", "genes", "hugo", "symbol", "gene symbol",
+        "gene", "genes", "hugo", "hugo symbol", "symbol", "gene symbol",
         "id", "probe", "probes", "composite element ref"
     }
     if (first_lower in special_first_cols) or (df0.columns[0] in ["Gene Symbol", "sample"]):
@@ -135,6 +136,14 @@ def rule_checks(name: str, df_num: pd.DataFrame):
         if below or above:
             abn["range_warning"] = True
 
+    elif name == "rnaseq":
+        # HiSeqV2: RSEM log2(x+1)，理论上 >=0；给出范围和分位数
+        abn["below_0_count"] = int((vals < -1e-6).sum())
+        q = np.quantile(vals, [0, 0.25, 0.5, 0.75, 0.95])
+        abn["quantiles"] = [round(float(x), 3) for x in q]  # [min, Q1, median, Q3, 95%]
+        # 极端大值提示（一般 <20）
+        abn["gt_20_count"] = int((vals > 20).sum())
+
     return abn
 
 def clinical_labels(clin: pd.DataFrame):
@@ -150,7 +159,6 @@ def clinical_labels(clin: pd.DataFrame):
     stypeid_col = pick("sample_type_id")
     stype_col   = pick("sample_type")
     sid_col     = pick("sampleID", "bcr_sample_barcode", "bcr_sample_barcode")
-    patient_col = pick("bcr_patient_barcode")
 
     # 分布
     subtype_vc = clin[subtype_col].dropna().astype(str).value_counts().to_dict() if subtype_col else {}
@@ -162,7 +170,7 @@ def clinical_labels(clin: pd.DataFrame):
     else:
         sample_short = pd.Series([None]*len(clin), index=clin.index)
 
-    # 用短样本号直接判断原发瘤=01（最稳妥）
+    # 用短样本号直接判断原发瘤=01
     is_primary = sample_short.apply(is_primary_by_short)
 
     # 退路：如果短样本号缺失，再用 sample_type_id / sample_type
@@ -194,7 +202,9 @@ def clinical_labels(clin: pd.DataFrame):
         "subtype_vc": subtype_vc,
         "gcimp_vc": gcimp_vc,
         "n_labelled_primary": n_labelled_primary,
-        "labelled_primary_shorts": labelled_primary_shorts
+        "labelled_primary_shorts": labelled_primary_shorts,
+        "sample_short_series": sample_short,  # 供后续映射
+        "subtype_col_name": subtype_col
     }
 
 def extract_shorts_from_cols(df_num: pd.DataFrame):
@@ -203,6 +213,10 @@ def extract_shorts_from_cols(df_num: pd.DataFrame):
         s = to_sample_short(str(c))
         if s: shorts.add(s)
     return shorts
+
+def combo_title(keys):
+    name_map = {"cnv_thres":"CNV", "mutation":"Mutation", "methyl450":"Methyl450", "rnaseq":"RNAseq"}
+    return " + ".join([name_map[k] for k in keys]) + " + 标签(原发)"
 
 # ========= 主流程 =========
 def main():
@@ -217,12 +231,10 @@ def main():
     print("带标签且原发瘤的样本数:", lab["n_labelled_primary"])
 
     # 为“按亚型计数”准备映射：short -> GeneExp_Subtype
-    sid_col = "sampleID" if "sampleID" in clin.columns else ("bcr_sample_barcode" if "bcr_sample_barcode" in clin.columns else None)
-    if sid_col is None:
-        raise RuntimeError("clinical 中缺少 sampleID / bcr_sample_barcode")
-    clin["__short"] = clin[sid_col].astype(str).apply(to_sample_short)
-    has_sub = clin["GeneExp_Subtype"].notna()
-    map_short2sub = dict(zip(clin.loc[has_sub, "__short"], clin.loc[has_sub, "GeneExp_Subtype"]))
+    sid_short = lab["sample_short_series"]
+    subcol = lab["subtype_col_name"]
+    has_sub = clin[subcol].notna()
+    map_short2sub = dict(zip(sid_short[has_sub], clin.loc[has_sub, subcol]))
 
     def count_by_sub(short_set, title):
         # 只统计有 GeneExp_Subtype 的样本
@@ -237,7 +249,7 @@ def main():
 
     # 2) 各模态检查
     sample_sets = {}
-    for key in ["cnv_thres", "mutation", "methyl450", "mirna"]:
+    for key in ["cnv_thres", "mutation", "methyl450", "rnaseq"]:
         path = FILES[key]
         if not os.path.exists(path):
             print(f"\n[WARN] 缺失文件: {key} -> {path}")
@@ -271,31 +283,28 @@ def main():
     for k, s in sample_sets.items():
         inter = s & label_set
         print(f"{k}: 模态样本={len(s)}, 交集={len(inter)}")
-        # 按亚型统计（单模态）
         count_by_sub(inter, f"{k} + 标签(原发)")
 
-    # 4) 双/三模态联合交集
-    S_cnv  = sample_sets.get("cnv_thres", set())
-    S_mut  = sample_sets.get("mutation", set())
-    S_meth = sample_sets.get("methyl450", set())
+    # 4) 双/三/四模态联合交集（自动穷举）
+    available_modalities = [k for k in ["cnv_thres","mutation","methyl450","rnaseq"] if k in sample_sets]
+    print("\n=== 双/三/四模态与(标签∩原发)交集 ===")
+    for r in [2, 3, 4]:
+        if len(available_modalities) < r:
+            continue
+        for comb in combinations(available_modalities, r):
+            inter = label_set.copy()
+            for k in comb:
+                inter &= sample_sets[k]
+            title = combo_title(comb)
+            print(f"{title}: {len(inter)}")
+            count_by_sub(inter, title)
 
-    print("\n=== 双/三模态与(标签∩原发)交集 ===")
-    inter_cnv_mut  = (S_cnv & S_mut  & label_set)
-    inter_cnv_meth = (S_cnv & S_meth & label_set)
-    inter_mut_meth = (S_mut & S_meth & label_set)
-    inter_all3     = (S_cnv & S_mut & S_meth & label_set)
-
-    print("CNV + Mutation + 标签(原发):", len(inter_cnv_mut))
-    print("CNV + Methyl450 + 标签(原发):", len(inter_cnv_meth))
-    print("Mutation + Methyl450 + 标签(原发):", len(inter_mut_meth))
-    print("CNV + Mutation + Methyl450 + 标签(原发):", len(inter_all3))
-
-    # 各组合的亚型分布
-    count_by_sub(inter_cnv_mut,  "CNV + Mutation + 标签(原发)")
-    count_by_sub(inter_cnv_meth, "CNV + Methyl450 + 标签(原发)")
-    count_by_sub(inter_mut_meth, "Mutation + Methyl450 + 标签(原发)")
-    count_by_sub(inter_all3,     "CNV + Mutation + Methyl450 + 标签(原发)")
+    # 5) 额外：四模态样本列表示例（≤20时）
+    if all(k in sample_sets for k in ["cnv_thres","mutation","methyl450","rnaseq"]):
+        inter4 = sample_sets["cnv_thres"] & sample_sets["mutation"] & sample_sets["methyl450"] & sample_sets["rnaseq"] & label_set
+        if 0 < len(inter4) <= 20:
+            print("\n[四模态样本列表示例 ≤20]:")
+            print(sorted(list(inter4)))
 
 if __name__ == "__main__":
     main()
-
