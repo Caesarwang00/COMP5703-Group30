@@ -1,0 +1,31 @@
+Embedding output shape: torch.Size([1, 24796, 8])
+After permute for Conv1d: torch.Size([1, 8, 24796])
+Layer 0 (Conv1d) output shape: torch.Size([1, 32, 6194])
+Layer 1 (ReLU) output shape: torch.Size([1, 32, 6194])
+Layer 2 (Dropout) output shape: torch.Size([1, 32, 6194])
+Layer 3 (Conv1d) output shape: torch.Size([1, 64, 3092])
+Layer 4 (ReLU) output shape: torch.Size([1, 64, 3092])
+Layer 5 (Dropout) output shape: torch.Size([1, 64, 3092])
+Layer 6 (Conv1d) output shape: torch.Size([1, 128, 3086])
+Layer 7 (ReLU) output shape: torch.Size([1, 128, 3086])
+Layer 8 (Dropout) output shape: torch.Size([1, 128, 3086])
+FC layer output shape: torch.Size([1, 4])
+
+Epoch 0: Val Macro-F1=0.1082
+Epoch 1: Val Macro-F1=0.1150
+Epoch 2: Val Macro-F1=0.1246
+Epoch 3: Val Macro-F1=0.1857
+Epoch 4: Val Macro-F1=0.1735
+Epoch 5: Val Macro-F1=0.2169
+Epoch 6: Val Macro-F1=0.2085
+Epoch 7: Val Macro-F1=0.2345
+Epoch 8: Val Macro-F1=0.2282
+Epoch 9: Val Macro-F1=0.2298
+Epoch 10: Val Macro-F1=0.2199
+Epoch 11: Val Macro-F1=0.1953
+Epoch 12: Val Macro-F1=0.2108
+Epoch 13: Val Macro-F1=0.2308
+Epoch 14: Val Macro-F1=0.1908
+Epoch 15: Val Macro-F1=0.2027
+Training finished. Best model saved.
+Test Accuracy: 0.3117, Test Macro-F1: 0.2076

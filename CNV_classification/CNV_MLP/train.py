@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import f1_score, accuracy_score
 import argparse
+from collections import Counter
 
 # ---------------- Dataset ----------------
 class GeneDataset(Dataset):
@@ -63,6 +64,9 @@ def train(args):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
 
+    # 打开日志文件
+    log_file = open("train_log.txt", "w")
+
     X, y_idx, label_map = preprocess_data(args.cnv_file, args.label_file,
                                          args.sample_column, args.label_column)
 
@@ -85,6 +89,10 @@ def train(args):
                 hidden_dims=args.hidden_dims,
                 dropout=args.dropout).to(device)
 
+    # 保存模型结构
+    log_file.write("Model architecture:\n")
+    log_file.write(str(model) + "\n\n")
+
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
 
@@ -92,12 +100,14 @@ def train(args):
 
     for epoch in range(args.epochs):
         model.train()
+        epoch_loss = 0
         for xb, yb in train_loader:
             xb, yb = xb.to(device), yb.to(device)
             optimizer.zero_grad()
             loss = criterion(model(xb), yb)
             loss.backward()
             optimizer.step()
+            epoch_loss += loss.item()
 
         # Validation
         model.eval()
@@ -109,7 +119,19 @@ def train(args):
                 preds.extend(torch.argmax(logits, 1).cpu().numpy())
                 trues.extend(yb.cpu().numpy())
         f1 = f1_score(trues, preds, average="macro")
-        print(f"Epoch {epoch}: Val Macro-F1={f1:.4f}")
+
+        # 真实分布和预测分布
+        true_distribution = dict(Counter(trues))
+        pred_distribution = dict(Counter(preds))
+
+        log_line = (
+            f"Epoch {epoch}: Train Loss={epoch_loss/len(train_loader):.4f}, "
+            f"Val Macro-F1={f1:.4f}\n"
+            f"    Val True Distribution={true_distribution}\n"
+            f"    Val Predictions Distribution={pred_distribution}\n"
+        )
+        print(log_line.strip())
+        log_file.write(log_line)
 
         if f1 > best_f1:
             best_f1 = f1
@@ -118,12 +140,14 @@ def train(args):
         else:
             patience += 1
             if patience >= args.early_stop:
+                log_file.write("Early stopping triggered.\n")
                 break
 
     torch.save(best_state, "best_model.pt")
     with open("label_map.json", "w") as f:
         json.dump(label_map, f)
     print("Training finished. Best model saved.")
+    log_file.write("Training finished. Best model saved.\n")
 
     # Test
     model.load_state_dict(best_state)
@@ -137,7 +161,17 @@ def train(args):
             trues.extend(yb.cpu().numpy())
     acc = accuracy_score(trues, preds)
     f1_test = f1_score(trues, preds, average="macro")
-    print(f"Test Accuracy: {acc:.4f}, Test Macro-F1: {f1_test:.4f}")
+    result_line = f"Test Accuracy: {acc:.4f}, Test Macro-F1: {f1_test:.4f}\n"
+    print(result_line.strip())
+    log_file.write(result_line)
+
+    # 测试集真实和预测分布
+    true_distribution = dict(Counter(trues))
+    pred_distribution = dict(Counter(preds))
+    log_file.write(f"Test True Distribution={true_distribution}\n")
+    log_file.write(f"Test Predictions Distribution={pred_distribution}\n")
+
+    log_file.close()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

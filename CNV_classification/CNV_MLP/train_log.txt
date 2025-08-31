@@ -1,0 +1,63 @@
+Model architecture:
+MLP(
+  (model): Sequential(
+    (0): Linear(in_features=24796, out_features=256, bias=True)
+    (1): ReLU()
+    (2): Dropout(p=0.25, inplace=False)
+    (3): Linear(in_features=256, out_features=128, bias=True)
+    (4): ReLU()
+    (5): Dropout(p=0.25, inplace=False)
+    (6): Linear(in_features=128, out_features=4, bias=True)
+  )
+)
+
+Epoch 0: Train Loss=1.5175, Val Macro-F1=0.4764
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 32, 2: 6, 1: 20, 3: 19}
+Epoch 1: Train Loss=1.0307, Val Macro-F1=0.4105
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 28, 2: 13, 1: 19, 3: 17}
+Epoch 2: Train Loss=0.9279, Val Macro-F1=0.4497
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 32, 2: 7, 1: 17, 3: 21}
+Epoch 3: Train Loss=0.6645, Val Macro-F1=0.4648
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 32, 2: 3, 1: 21, 3: 21}
+Epoch 4: Train Loss=0.4933, Val Macro-F1=0.4868
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 28, 2: 8, 1: 18, 3: 23}
+Epoch 5: Train Loss=0.4893, Val Macro-F1=0.4496
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 33, 2: 7, 1: 18, 3: 19}
+Epoch 6: Train Loss=0.3986, Val Macro-F1=0.4995
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 32, 2: 7, 1: 19, 3: 19}
+Epoch 7: Train Loss=0.3241, Val Macro-F1=0.4339
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 31, 2: 6, 1: 19, 3: 21}
+Epoch 8: Train Loss=0.3873, Val Macro-F1=0.4609
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 32, 2: 6, 1: 20, 3: 19}
+Epoch 9: Train Loss=0.3689, Val Macro-F1=0.4585
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 27, 2: 8, 1: 23, 3: 19}
+Epoch 10: Train Loss=0.3444, Val Macro-F1=0.4455
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 34, 2: 5, 1: 18, 3: 20}
+Epoch 11: Train Loss=0.3368, Val Macro-F1=0.4455
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 25, 2: 9, 1: 22, 3: 21}
+Epoch 12: Train Loss=0.3116, Val Macro-F1=0.4669
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 30, 1: 24, 2: 5, 3: 18}
+Epoch 13: Train Loss=0.2459, Val Macro-F1=0.4289
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 33, 1: 19, 2: 7, 3: 18}
+Epoch 14: Train Loss=0.2857, Val Macro-F1=0.4761
+    Val True Distribution={1: 23, 0: 21, 2: 13, 3: 20}
+    Val Predictions Distribution={0: 30, 2: 10, 1: 19, 3: 18}
+Early stopping triggered.
+Training finished. Best model saved.
+Test Accuracy: 0.4805, Test Macro-F1: 0.4461
+Test True Distribution={3: 20, 1: 23, 0: 22, 2: 12}
+Test Predictions Distribution={0: 22, 2: 13, 1: 22, 3: 20}
