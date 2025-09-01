@@ -1,0 +1,4 @@
+{
+  "randomforestclassifier__max_depth": 10,
+  "randomforestclassifier__max_features": null
+}

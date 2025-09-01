@@ -1,0 +1,12 @@
+{
+  "best_score_macro_f1_cv3": 0.4009203436137327,
+  "best_params": {
+    "selectkbest__k": 200,
+    "selectkbest__score_func": "chi2",
+    "xgbclassifier__colsample_bytree": 0.8,
+    "xgbclassifier__learning_rate": 0.03,
+    "xgbclassifier__max_depth": 6,
+    "xgbclassifier__n_estimators": 500,
+    "xgbclassifier__subsample": 0.9
+  }
+}

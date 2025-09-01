@@ -1,0 +1,10 @@
+              precision    recall  f1-score   support
+
+   Classical       0.33      0.36      0.34        73
+ Mesenchymal       0.44      0.44      0.44        85
+      Neural       0.09      0.09      0.09        45
+   Proneural       0.57      0.52      0.54        60
+
+    accuracy                           0.37       263
+   macro avg       0.36      0.35      0.35       263
+weighted avg       0.38      0.37      0.38       263
