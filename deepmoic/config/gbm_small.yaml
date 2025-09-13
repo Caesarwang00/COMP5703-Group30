@@ -1,0 +1,44 @@
+DATA:
+  LABELS_FROM_CLINICAL:
+    PATH: ../data/TCGA.GBM.sampleMap_GBM_clinicalMatrix
+    ROW: GeneExp_Subtype
+    PRIMARY_ONLY: true   # 若想扩大样本，先试 false
+  MODALITIES:
+    rna: ../data/HiSeqV2
+    meth: ../data/HumanMethylation450
+    # 先注释 cnv，待样本量/效果稳定后再加
+    # cnv: ../data/Gistic2_CopyNumber_Gistic2_all_thresholded.by_genes
+  SELECT_TOP_VAR:
+    enabled: true
+    per_modality_k: { rna: 5000, meth: 15000 }  # 先把 meth 降到 15k
+
+AE:
+  LATENT_PER_MODAL: 64
+  HIDDEN: 128
+  EPOCHS: 300
+  BATCH_SIZE: 256
+  DROPOUT: 0.1
+  LR: 1e-3
+
+SNF:
+  K: 12
+  T: 25
+
+GCN:
+  LAYERS: 8
+  HIDDEN: 64
+  ALPHA: 0.05
+  DROPOUT: 0.6
+  LR: 5e-3
+  EPOCHS: 300
+  WEIGHT_DECAY: 5e-4
+  CLASS_WEIGHTED_CE: true
+  LABEL_SMOOTHING: 0.05
+  EARLY_STOP: true
+  EARLY_STOP_PATIENCE: 80
+
+EXPERIMENT:
+  REPEATS: 10
+  TRAIN_RATIO: 0.6
+  STRATIFIED: true
+  RANDOM_SEEDS: [1,2,3,4,5,6,7,8,9,10]
