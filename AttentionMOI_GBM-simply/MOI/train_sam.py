@@ -50,7 +50,6 @@ def setup_logging():
         ]
     )
     return logging.getLogger(__name__), log_path
-
 # =========================
 # Dataset
 # =========================
