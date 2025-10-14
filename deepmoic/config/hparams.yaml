@@ -1,0 +1,55 @@
+DATA:
+  MODALITIES:
+    rna:  ../data_RNA/HiSeqV2
+    meth: ../data_RNA/HumanMethylation450
+    cnv:  ../data_RNA/Gistic2_CopyNumber_Gistic2_all_thresholded.by_genes
+  LABELS_FROM_CLINICAL:
+    PATH: ../data_RNA/TCGA.GBM.sampleMap_GBM_clinicalMatrix
+    ROW:  "GeneExp_Subtype"
+    PRIMARY_ONLY: true
+  TAKE_INTERSECTION: true
+  ZSCORE: true
+  SELECT_TOP_VAR:
+    enabled: true
+    per_modality_k:
+      rna:  5000
+      meth: 20000
+      cnv:  10000
+
+
+AE:
+  LATENT_PER_MODAL: 32
+  HIDDEN: 128
+  LR: 1.0e-3
+  EPOCHS: 120
+  BATCH_SIZE: 64
+  WEIGHT_DECAY: 1.0e-4
+  DROPOUT: 0.2
+
+SNF:
+  k: 8
+  t: 20
+
+EXPERIMENT:
+  REPEATS: 5
+  STRATIFIED: true
+  TRAIN_RATIO: 0.6
+  RANDOM_SEEDS: [1, 2, 3, 4, 5]
+
+TRAIN:
+  USE_GPU: true
+  OUTPUT_DIR: C:/Users/Administrator/Desktop/deepmoic
+  VAL_RATIO: 0.2
+
+  GCN:
+    HIDDEN: 64
+    LAYERS: 2
+    ALPHA: 0.05
+    DROPOUT: 0.6
+    LR: 5.0e-3
+    EPOCHS: 300
+    WEIGHT_DECAY: 5.0e-4
+    CLASS_WEIGHTED_CE: true
+    LABEL_SMOOTHING: 0.05
+    EARLY_STOP: true
+    EARLY_STOP_PATIENCE: 60

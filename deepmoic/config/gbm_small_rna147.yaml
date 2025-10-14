@@ -1,0 +1,50 @@
+DATA:
+  LABELS_FROM_CLINICAL:
+    PATH: ../data_RNA/GBM_clinicalMatrix
+    ROW: GeneExp_Subtype
+    PRIMARY_ONLY: true
+  MODALITIES:
+    cnv: ../data_RNA/CNV
+    rna: ../data_RNA/RNA
+  SELECT_TOP_VAR:
+    enabled: true
+    per_modality_k: { cnv: 1500, rna: 3000 }
+  TAKE_INTERSECTION: true
+  ZSCORE: true
+
+AE:
+  HIDDEN: 256
+  LATENT_PER_MODAL: 80
+  EPOCHS: 400
+  BATCH_SIZE: 128
+  DROPOUT: 0.25
+  LR: 0.001
+  WEIGHT_DECAY: 1.0e-5
+
+SNF:
+  K: 14
+  T: 25
+  METRIC: euclidean
+
+GCN:
+  LAYERS: 3
+  HIDDEN: 160
+  ALPHA: 0.15
+  DROPOUT: 0.45
+  LR: 8.0e-4
+  EPOCHS: 300
+  WEIGHT_DECAY: 1.0e-4
+  CLASS_WEIGHTED_CE: true
+  LABEL_SMOOTHING: 0.05
+  EARLY_STOP: true
+  EARLY_STOP_PATIENCE: 50
+
+EXPERIMENT:
+  REPEATS: 50
+  TRAIN_RATIO: 0.80
+  STRATIFIED: true
+  RANDOM_SEEDS: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+
+TRAIN:
+  USE_GPU: true
+  VAL_RATIO: 0.15

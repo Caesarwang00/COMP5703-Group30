@@ -1,0 +1,53 @@
+DATA:
+  LABELS_FROM_CLINICAL:
+    PATH: ../data_RNA/GBM_clinicalMatrix
+    ROW: GeneExp_Subtype
+    PRIMARY_ONLY: false   # 必须关闭以获得更多样本
+  MODALITIES:
+    # 先只用RNA，减少特征维度
+    rna: ../data_RNA/RNA
+    # meth: ../data_RNA/HumanMethylation450
+    # cnv: ../data_RNA/Gistic2_CopyNumber_Gistic2_all_thresholded.by_genes
+  SELECT_TOP_VAR:
+    enabled: true
+    per_modality_k: { rna: 10000 }  # 大幅减少特征数
+  TAKE_INTERSECTION: true
+  ZSCORE: true
+
+# 简化模型架构
+AE:
+  LATENT_PER_MODAL: 32   # 减小潜在维度
+  HIDDEN: 64             # 减小隐层
+  EPOCHS: 50             # 减少训练轮数
+  BATCH_SIZE: 16         # 小批次
+  DROPOUT: 0.5           # 增加dropout
+  LR: 1e-3
+  WEIGHT_DECAY: 1e-3     # 增加正则化
+
+SNF:
+  K: 15                   # 减小K (样本少)
+  T: 20                  # 减少迭代
+  METRIC: cosine
+
+GCN:
+  LAYERS: 1              # 只用1层！
+  HIDDEN: 32             # 大幅减小隐层
+  ALPHA: 0.5             # 增加残差连接权重
+  DROPOUT: 0.6           # 强dropout
+  LR: 1e-3
+  EPOCHS: 100            # 减少epochs
+  WEIGHT_DECAY: 1e-3     # 强正则化
+  CLASS_WEIGHTED_CE: true
+  LABEL_SMOOTHING: 0.2   # 增加平滑
+  EARLY_STOP: false      # 关闭早停(验证集太小)
+  EARLY_STOP_PATIENCE: 20
+
+EXPERIMENT:
+  REPEATS: 20            # 减少重复次数
+  TRAIN_RATIO: 0.8       # 增加训练集比例
+  STRATIFIED: true
+  RANDOM_SEEDS: [42,43,44,45,46,47,48,49,50,51]
+
+TRAIN:
+  USE_GPU: true
+  VAL_RATIO: 0.0

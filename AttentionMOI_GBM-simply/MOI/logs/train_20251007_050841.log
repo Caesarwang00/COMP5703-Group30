@@ -1,0 +1,5 @@
+2025-10-07 05:08:42,179 [INFO] Model parameters: 33,028,324, Classes: 4
+2025-10-07 05:08:42,179 [INFO] Enhanced regularization: Dropout=0.2, Weight_decay=0.001
+2025-10-07 05:08:42,858 [INFO] Regularized Attention-MOI Training Started
+2025-10-07 05:08:42,858 [INFO] Training started with enhanced regularization
+2025-10-07 05:08:42,858 [INFO] Dropout: 0.2, Weight decay: 0.001

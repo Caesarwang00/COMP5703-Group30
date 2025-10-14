@@ -1,0 +1,47 @@
+{
+  "classes": [
+    "Classical",
+    "Mesenchymal",
+    "Neural",
+    "Proneural"
+  ],
+  "counts": {
+    "train": 100,
+    "val": 22,
+    "test": 22
+  },
+  "train": {
+    "acc": 0.93,
+    "macro_f1": 0.9350786964472309
+  },
+  "val": {
+    "acc": 0.3181818181818182,
+    "macro_f1": 0.26517857142857143
+  },
+  "test": {
+    "acc": 0.4090909090909091,
+    "macro_f1": 0.3722943722943723
+  },
+  "params": {
+    "data_dir": "../data/",
+    "features": "multiomics_fused_features.tsv",
+    "edges": "edge_list.csv",
+    "labels": "subtype_labels.tsv",
+    "out_dir": "./output",
+    "id_mode": "auto",
+    "seed": 42,
+    "hid": 64,
+    "lr": 0.001,
+    "dropout": 0.5,
+    "weight_decay": 0.0005,
+    "epochs": 1000,
+    "patience": 150,
+    "label_smoothing": 0.05,
+    "train_ratio": 0.7,
+    "val_ratio": 0.15,
+    "alpha": 2.0,
+    "p0": 0.5,
+    "no_undirected": false,
+    "cpu": false
+  }
+}

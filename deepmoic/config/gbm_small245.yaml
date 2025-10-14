@@ -1,0 +1,50 @@
+DATA:
+  LABELS_FROM_CLINICAL:
+    PATH: ../data_RNA/GBM_clinicalMatrix
+    ROW: GeneExp_Subtype
+    PRIMARY_ONLY: true
+  MODALITIES:
+    cnv: ../data_RNA/CNV
+    mutation: ../data_RNA/MUT
+  SELECT_TOP_VAR:
+    enabled: true
+    per_modality_k: { cnv: 10000, mutation: 4500 }  #
+  TAKE_INTERSECTION: true
+  ZSCORE: true
+
+AE:
+  LATENT_PER_MODAL: 128
+  HIDDEN: 256             # 增大隐层
+  EPOCHS: 200
+  BATCH_SIZE: 128          # 增大batch
+  DROPOUT: 0.1            # 减少dropout
+  LR: 5e-4                # 降低学习率
+  WEIGHT_DECAY: 1e-5
+
+SNF:
+  K: 15
+  T: 20
+  METRIC: cosine
+
+GCN:
+  LAYERS: 6
+  HIDDEN: 256             # 大幅增大隐层
+  ALPHA: 0.15
+  DROPOUT: 0.5
+  LR: 7e-4                # 降低学习率
+  EPOCHS: 150             # 增加训练轮数
+  WEIGHT_DECAY: 1e-4     # 减少正则化
+  CLASS_WEIGHTED_CE: true
+  LABEL_SMOOTHING: 0.05   # 轻微平滑
+  EARLY_STOP: False
+  EARLY_STOP_PATIENCE: 60 # 更多耐心
+
+EXPERIMENT:
+  REPEATS: 30
+  TRAIN_RATIO: 0.85       # 增加训练比例
+  STRATIFIED: true
+  RANDOM_SEEDS: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+
+TRAIN:
+  USE_GPU: true
+  VAL_RATIO: 0        # 减小验证集

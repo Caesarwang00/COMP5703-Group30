@@ -1,0 +1,38 @@
+2025-10-05 01:12:26,050 [INFO] Regularized Simple Attention-MOI Training Started
+2025-10-05 01:12:26,316 [INFO] Model parameters: Total: 5,505,510, Trainable: 5,505,510
+2025-10-05 01:12:26,316 [INFO] Classes: 4
+2025-10-05 01:12:26,316 [INFO] Model architecture: Simplified Attention MOI with heavy regularization
+2025-10-05 01:12:26,920 [INFO] Training started with 100 epochs, lr=0.0001, hidden_dim=64
+2025-10-05 01:12:26,920 [INFO] Dropout: 0.5, Weight decay: 0.001
+2025-10-05 01:12:27,563 [INFO] Best model saved with val_acc: 0.2500
+2025-10-05 01:12:27,563 [INFO] Epoch [1/100] Train Loss: 1.5386 Val Loss: 1.3500 Val Acc: 0.2500 LR: 0.000100
+2025-10-05 01:12:27,649 [INFO] Epoch [2/100] Train Loss: 1.4520 Val Loss: 1.3560 Val Acc: 0.2500 LR: 0.000100
+2025-10-05 01:12:27,755 [INFO] Best model saved with val_acc: 0.2917
+2025-10-05 01:12:27,755 [INFO] Epoch [3/100] Train Loss: 1.3803 Val Loss: 1.3417 Val Acc: 0.2917 LR: 0.000100
+2025-10-05 01:12:27,924 [INFO] Best model saved with val_acc: 0.3333
+2025-10-05 01:12:27,924 [INFO] Epoch [4/100] Train Loss: 1.3411 Val Loss: 1.3234 Val Acc: 0.3333 LR: 0.000100
+2025-10-05 01:12:28,037 [INFO] Best model saved with val_acc: 0.3750
+2025-10-05 01:12:28,037 [INFO] Epoch [5/100] Train Loss: 1.3502 Val Loss: 1.3174 Val Acc: 0.3750 LR: 0.000100
+2025-10-05 01:12:28,172 [INFO] Best model saved with val_acc: 0.4167
+2025-10-05 01:12:28,172 [INFO] Epoch [6/100] Train Loss: 1.4216 Val Loss: 1.3085 Val Acc: 0.4167 LR: 0.000100
+2025-10-05 01:12:28,269 [INFO] Epoch [7/100] Train Loss: 1.3480 Val Loss: 1.2983 Val Acc: 0.4167 LR: 0.000100
+2025-10-05 01:12:28,376 [INFO] Best model saved with val_acc: 0.5000
+2025-10-05 01:12:28,377 [INFO] Epoch [8/100] Train Loss: 1.2914 Val Loss: 1.2945 Val Acc: 0.5000 LR: 0.000100
+2025-10-05 01:12:28,469 [INFO] Epoch [9/100] Train Loss: 1.2734 Val Loss: 1.2894 Val Acc: 0.4583 LR: 0.000100
+2025-10-05 01:12:28,552 [INFO] Epoch [10/100] Train Loss: 1.3137 Val Loss: 1.2907 Val Acc: 0.4583 LR: 0.000100
+2025-10-05 01:12:28,648 [INFO] Epoch [11/100] Train Loss: 1.2694 Val Loss: 1.2843 Val Acc: 0.4583 LR: 0.000100
+2025-10-05 01:12:28,755 [INFO] Epoch [12/100] Train Loss: 1.2748 Val Loss: 1.2734 Val Acc: 0.4583 LR: 0.000100
+2025-10-05 01:12:28,850 [INFO] Epoch [13/100] Train Loss: 1.1815 Val Loss: 1.2607 Val Acc: 0.5000 LR: 0.000100
+2025-10-05 01:12:28,936 [INFO] Epoch [14/100] Train Loss: 1.2374 Val Loss: 1.2552 Val Acc: 0.4583 LR: 0.000050
+2025-10-05 01:12:29,021 [INFO] Epoch [15/100] Train Loss: 1.2475 Val Loss: 1.2527 Val Acc: 0.4583 LR: 0.000050
+2025-10-05 01:12:29,106 [INFO] Epoch [16/100] Train Loss: 1.1619 Val Loss: 1.2484 Val Acc: 0.4583 LR: 0.000050
+2025-10-05 01:12:29,190 [INFO] Epoch [17/100] Train Loss: 1.2508 Val Loss: 1.2457 Val Acc: 0.4583 LR: 0.000050
+2025-10-05 01:12:29,274 [INFO] Epoch [18/100] Train Loss: 1.2638 Val Loss: 1.2475 Val Acc: 0.5000 LR: 0.000050
+2025-10-05 01:12:29,375 [INFO] Epoch [19/100] Train Loss: 1.1758 Val Loss: 1.2350 Val Acc: 0.5000 LR: 0.000050
+2025-10-05 01:12:29,456 [INFO] Epoch [20/100] Train Loss: 1.0666 Val Loss: 1.2361 Val Acc: 0.5000 LR: 0.000025
+2025-10-05 01:12:29,538 [INFO] Epoch [21/100] Train Loss: 1.1256 Val Loss: 1.2371 Val Acc: 0.5000 LR: 0.000025
+2025-10-05 01:12:29,625 [INFO] Epoch [22/100] Train Loss: 1.2864 Val Loss: 1.2298 Val Acc: 0.5000 LR: 0.000025
+2025-10-05 01:12:29,703 [INFO] Early stopping at epoch 23
+2025-10-05 01:12:29,703 [WARNING] Could not plot training curves: name 'plt' is not defined
+2025-10-05 01:12:29,706 [INFO] Training completed. Best accuracy: 0.5000
+2025-10-05 01:12:29,706 [INFO] Log: ./logs/train_20251005_011226.log, Model: ./models/best_model.pth

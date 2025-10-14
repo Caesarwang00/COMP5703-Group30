@@ -1,0 +1,82 @@
+2025-10-05 01:31:48,219 [INFO] Simplified Attention-MOI Training Started
+2025-10-05 01:31:48,482 [INFO] Simplified model parameters: 16,500,436, Classes: 4
+2025-10-05 01:31:48,482 [INFO] Model architecture unchanged, but with reduced dimensions
+2025-10-05 01:31:49,056 [INFO] Training started with simplified model
+2025-10-05 01:31:49,056 [INFO] Hidden dim: 64, Dropout: 0.3, Weight decay: 0.0005
+2025-10-05 01:31:49,393 [INFO] Best model saved with val_acc: 0.4167
+2025-10-05 01:31:49,393 [INFO] Epoch [1/100] Train Loss: 1.3835 Val Loss: 1.3449 Val Acc: 0.4167 LR: 0.001000
+2025-10-05 01:31:49,512 [INFO] Best model saved with val_acc: 0.4583
+2025-10-05 01:31:49,513 [INFO] Epoch [2/100] Train Loss: 1.2147 Val Loss: 1.2837 Val Acc: 0.4583 LR: 0.001000
+2025-10-05 01:31:49,664 [INFO] Best model saved with val_acc: 0.5417
+2025-10-05 01:31:49,664 [INFO] Epoch [3/100] Train Loss: 1.1688 Val Loss: 1.2525 Val Acc: 0.5417 LR: 0.001000
+2025-10-05 01:31:49,722 [INFO] Epoch [4/100] Train Loss: 1.0922 Val Loss: 1.2280 Val Acc: 0.5417 LR: 0.001000
+2025-10-05 01:31:49,860 [INFO] Best model saved with val_acc: 0.5833
+2025-10-05 01:31:49,860 [INFO] Epoch [5/100] Train Loss: 1.0830 Val Loss: 1.1935 Val Acc: 0.5833 LR: 0.001000
+2025-10-05 01:31:49,995 [INFO] Best model saved with val_acc: 0.6250
+2025-10-05 01:31:49,995 [INFO] Epoch [6/100] Train Loss: 1.0210 Val Loss: 1.1628 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:50,044 [INFO] Epoch [7/100] Train Loss: 1.0108 Val Loss: 1.1261 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:50,092 [INFO] Epoch [8/100] Train Loss: 0.9059 Val Loss: 1.0922 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:50,140 [INFO] Epoch [9/100] Train Loss: 0.8426 Val Loss: 1.0660 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:50,187 [INFO] Epoch [10/100] Train Loss: 0.8320 Val Loss: 1.0426 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:50,238 [INFO] Epoch [11/100] Train Loss: 0.8048 Val Loss: 1.0187 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:50,287 [INFO] Epoch [12/100] Train Loss: 0.7368 Val Loss: 1.0024 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:50,332 [INFO] Epoch [13/100] Train Loss: 0.7335 Val Loss: 0.9943 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:50,447 [INFO] Best model saved with val_acc: 0.6667
+2025-10-05 01:31:50,447 [INFO] Epoch [14/100] Train Loss: 0.6733 Val Loss: 0.9862 Val Acc: 0.6667 LR: 0.001000
+2025-10-05 01:31:50,501 [INFO] Epoch [15/100] Train Loss: 0.6590 Val Loss: 0.9774 Val Acc: 0.6667 LR: 0.001000
+2025-10-05 01:31:50,547 [INFO] Epoch [16/100] Train Loss: 0.6036 Val Loss: 0.9786 Val Acc: 0.6667 LR: 0.001000
+2025-10-05 01:31:50,594 [INFO] Epoch [17/100] Train Loss: 0.5936 Val Loss: 0.9810 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:50,644 [INFO] Epoch [18/100] Train Loss: 0.5243 Val Loss: 0.9767 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:50,701 [INFO] Epoch [19/100] Train Loss: 0.5661 Val Loss: 0.9729 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:50,753 [INFO] Epoch [20/100] Train Loss: 0.5337 Val Loss: 0.9759 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:50,804 [INFO] Epoch [21/100] Train Loss: 0.4516 Val Loss: 0.9815 Val Acc: 0.5833 LR: 0.001000
+2025-10-05 01:31:50,853 [INFO] Epoch [22/100] Train Loss: 0.5111 Val Loss: 0.9877 Val Acc: 0.5833 LR: 0.001000
+2025-10-05 01:31:50,898 [INFO] Epoch [23/100] Train Loss: 0.4617 Val Loss: 0.9949 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:50,951 [INFO] Epoch [24/100] Train Loss: 0.4793 Val Loss: 1.0014 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:51,002 [INFO] Epoch [25/100] Train Loss: 0.4034 Val Loss: 1.0183 Val Acc: 0.5833 LR: 0.001000
+2025-10-05 01:31:51,054 [INFO] Epoch [26/100] Train Loss: 0.3768 Val Loss: 1.0340 Val Acc: 0.5833 LR: 0.001000
+2025-10-05 01:31:51,105 [INFO] Epoch [27/100] Train Loss: 0.3863 Val Loss: 0.9839 Val Acc: 0.5833 LR: 0.001000
+2025-10-05 01:31:51,226 [INFO] Best model saved with val_acc: 0.7083
+2025-10-05 01:31:51,227 [INFO] Epoch [28/100] Train Loss: 0.3791 Val Loss: 0.9194 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:51,276 [INFO] Epoch [29/100] Train Loss: 0.3369 Val Loss: 0.8918 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:51,324 [INFO] Epoch [30/100] Train Loss: 0.3490 Val Loss: 0.8755 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:51,448 [INFO] Best model saved with val_acc: 0.7500
+2025-10-05 01:31:51,449 [INFO] Epoch [31/100] Train Loss: 0.3506 Val Loss: 0.8711 Val Acc: 0.7500 LR: 0.001000
+2025-10-05 01:31:51,503 [INFO] Epoch [32/100] Train Loss: 0.3204 Val Loss: 0.8688 Val Acc: 0.7500 LR: 0.001000
+2025-10-05 01:31:51,551 [INFO] Epoch [33/100] Train Loss: 0.3414 Val Loss: 0.8813 Val Acc: 0.7500 LR: 0.001000
+2025-10-05 01:31:51,598 [INFO] Epoch [34/100] Train Loss: 0.3391 Val Loss: 0.8875 Val Acc: 0.7500 LR: 0.001000
+2025-10-05 01:31:51,650 [INFO] Epoch [35/100] Train Loss: 0.3269 Val Loss: 0.8934 Val Acc: 0.7500 LR: 0.001000
+2025-10-05 01:31:51,773 [INFO] Best model saved with val_acc: 0.7917
+2025-10-05 01:31:51,773 [INFO] Epoch [36/100] Train Loss: 0.3226 Val Loss: 0.9090 Val Acc: 0.7917 LR: 0.001000
+2025-10-05 01:31:51,825 [INFO] Epoch [37/100] Train Loss: 0.2657 Val Loss: 0.9331 Val Acc: 0.7500 LR: 0.001000
+2025-10-05 01:31:51,874 [INFO] Epoch [38/100] Train Loss: 0.3034 Val Loss: 0.9517 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:51,926 [INFO] Epoch [39/100] Train Loss: 0.2785 Val Loss: 0.9679 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:51,977 [INFO] Epoch [40/100] Train Loss: 0.3041 Val Loss: 0.9745 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:52,026 [INFO] Epoch [41/100] Train Loss: 0.2244 Val Loss: 0.9671 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:52,072 [INFO] Epoch [42/100] Train Loss: 0.2339 Val Loss: 0.9580 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:52,123 [INFO] Epoch [43/100] Train Loss: 0.2276 Val Loss: 0.9555 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:52,170 [INFO] Epoch [44/100] Train Loss: 0.2195 Val Loss: 0.9411 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:52,217 [INFO] Epoch [45/100] Train Loss: 0.2732 Val Loss: 0.9553 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:52,262 [INFO] Epoch [46/100] Train Loss: 0.2151 Val Loss: 0.9709 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:52,308 [INFO] Epoch [47/100] Train Loss: 0.2586 Val Loss: 0.9577 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:52,359 [INFO] Epoch [48/100] Train Loss: 0.1796 Val Loss: 0.9740 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:52,411 [INFO] Epoch [49/100] Train Loss: 0.2127 Val Loss: 0.9847 Val Acc: 0.6667 LR: 0.001000
+2025-10-05 01:31:52,458 [INFO] Epoch [50/100] Train Loss: 0.2223 Val Loss: 0.9934 Val Acc: 0.6667 LR: 0.001000
+2025-10-05 01:31:52,507 [INFO] Epoch [51/100] Train Loss: 0.1802 Val Loss: 1.0120 Val Acc: 0.6667 LR: 0.001000
+2025-10-05 01:31:52,554 [INFO] Epoch [52/100] Train Loss: 0.2061 Val Loss: 1.0406 Val Acc: 0.6667 LR: 0.001000
+2025-10-05 01:31:52,608 [INFO] Epoch [53/100] Train Loss: 0.2048 Val Loss: 1.0314 Val Acc: 0.6667 LR: 0.001000
+2025-10-05 01:31:52,657 [INFO] Epoch [54/100] Train Loss: 0.1393 Val Loss: 1.0255 Val Acc: 0.6667 LR: 0.001000
+2025-10-05 01:31:52,704 [INFO] Epoch [55/100] Train Loss: 0.1864 Val Loss: 1.0261 Val Acc: 0.6667 LR: 0.001000
+2025-10-05 01:31:52,749 [INFO] Epoch [56/100] Train Loss: 0.1847 Val Loss: 1.0341 Val Acc: 0.6250 LR: 0.001000
+2025-10-05 01:31:52,796 [INFO] Epoch [57/100] Train Loss: 0.1778 Val Loss: 1.0350 Val Acc: 0.6667 LR: 0.001000
+2025-10-05 01:31:52,848 [INFO] Epoch [58/100] Train Loss: 0.1796 Val Loss: 1.0489 Val Acc: 0.6667 LR: 0.001000
+2025-10-05 01:31:52,901 [INFO] Epoch [59/100] Train Loss: 0.2159 Val Loss: 1.0355 Val Acc: 0.7083 LR: 0.001000
+2025-10-05 01:31:52,951 [INFO] Epoch [60/100] Train Loss: 0.1954 Val Loss: 1.0297 Val Acc: 0.7500 LR: 0.001000
+2025-10-05 01:31:52,999 [INFO] Epoch [61/100] Train Loss: 0.1650 Val Loss: 1.0292 Val Acc: 0.7500 LR: 0.001000
+2025-10-05 01:31:53,046 [INFO] Epoch [62/100] Train Loss: 0.1563 Val Loss: 1.0276 Val Acc: 0.7500 LR: 0.001000
+2025-10-05 01:31:53,098 [INFO] Epoch [63/100] Train Loss: 0.1513 Val Loss: 1.0334 Val Acc: 0.7500 LR: 0.001000
+2025-10-05 01:31:53,145 [INFO] Epoch [64/100] Train Loss: 0.1793 Val Loss: 1.0456 Val Acc: 0.7500 LR: 0.001000
+2025-10-05 01:31:53,193 [INFO] Epoch [65/100] Train Loss: 0.1755 Val Loss: 1.0466 Val Acc: 0.7500 LR: 0.001000
+2025-10-05 01:31:53,241 [INFO] Early stopping at epoch 66
+2025-10-05 01:31:53,250 [INFO] Training completed. Best accuracy: 0.7917
+2025-10-05 01:31:53,250 [INFO] Log: ./logs/train_20251005_013148.log, Model: ./models/best_model.pth

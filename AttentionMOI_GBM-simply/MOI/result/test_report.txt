@@ -1,0 +1,18 @@
+Overall Test Accuracy: 0.7000
+Class: Classical | Samples: 8 | Accuracy: 0.7500 | Error Rate: 0.2500
+Class: Mesenchymal | Samples: 10 | Accuracy: 0.6000 | Error Rate: 0.4000
+Class: Neural | Samples: 5 | Accuracy: 0.8000 | Error Rate: 0.2000
+Class: Proneural | Samples: 7 | Accuracy: 0.7143 | Error Rate: 0.2857
+
+Classification Report:
+              precision    recall  f1-score   support
+
+   Classical     0.7500    0.7500    0.7500         8
+ Mesenchymal     0.7500    0.6000    0.6667        10
+      Neural     0.5714    0.8000    0.6667         5
+   Proneural     0.7143    0.7143    0.7143         7
+
+    accuracy                         0.7000        30
+   macro avg     0.6964    0.7161    0.6994        30
+weighted avg     0.7119    0.7000    0.7000        30
+
