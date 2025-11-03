@@ -79,6 +79,7 @@ def main():
     print("[I] SNV:", args.snv)
     print("[I] k  :", args.k)
 
+
     # 读取三模态（基因×样本）
     if not os.path.exists(args.rna): sys.exit(f"❌ 找不到 RNA：{args.rna}")
     if not os.path.exists(args.cnv): sys.exit(f"❌ 找不到 CNV：{args.cnv}")
