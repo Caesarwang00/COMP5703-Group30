@@ -21,5 +21,6 @@ def main():
     from deepmoic.scripts.train import main as train_main
     train_main(cfg)   # 直接把 dict 传进去
 
+
 if __name__ == "__main__":
     main()
